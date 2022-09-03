@@ -33,9 +33,6 @@ for maintainer in maintainers:
     else:
         res+=f" --cc={row[0].strip().split()[-1].lstrip('<').rstrip('>')}"
 
-# Use this only for kernel mentorship program, do not spam otherwise
-res+=" --cc=skhan@linuxfoundation.org --cc=linux-kernel-mentees@lists.linuxfoundation.org"
-
 initial_str = f"git format-patch -1 {commit_id}"
 print(initial_str + res)
 
