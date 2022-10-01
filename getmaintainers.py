@@ -26,12 +26,11 @@ for maintainer in maintainers:
     if maintainer=="":
         continue
     row=maintainer.split("(")
-    if "supporter" in row[1].lower():
-        res+=f" --to={row[0].strip().split()[-1].lstrip('<').rstrip('>')}"
-    elif "maintainer" in row[1].lower():
-        res+=f" --to={row[0].strip().split()[-1].lstrip('<').rstrip('>')}"
-    else:
+    role = row[1].lower()
+    if ("open list" in role):
         res+=f" --cc={row[0].strip().split()[-1].lstrip('<').rstrip('>')}"
+    else:
+        res+=f" --to={row[0].strip().split()[-1].lstrip('<').rstrip('>')}"
 
 initial_str = f"git format-patch -1 {commit_id}"
 print(initial_str + res)
